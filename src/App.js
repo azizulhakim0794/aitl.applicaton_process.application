@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Loading from './Component/CommonComponent/Loading/Loading';
+const Home = lazy(()=> import('./Component/Home/Home'))
+const AddEmployee = lazy(()=> import('./Component/AddEmployee/AddEmployee'))
+const AllEmployee = lazy(()=> import('./Component/AllEmployee/AllEmployee'))
+const UpdateEmployee = lazy(()=> import('./Component/UpdateEmployee/UpdateEmployee'))
+const NotFound = lazy(()=> import('./Component/CommonComponent/NotFound/NotFound'))
 
 function App() {
+  const [allCountry, setAllCountry] = useState([])
+   // Load all Country
+   useEffect(() => {
+    axios.get('https://restcountries.com/v2/all')
+        .then(res => setAllCountry(res.data))
+}, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<Loading />}>
+    <Routes>
+        <Route exact path="/" element={<Home/>} />
+        <Route path="/home" element={<Navigate to="/" />} />
+        <Route path="*" element={<NotFound/>}/>
+        <Route path="/addEmployee" element={<AddEmployee allCountry={allCountry}/>}/>
+        <Route path="/allEmployee" element={<AllEmployee/>}/>
+        <Route path="/updateEmployee/:updateEmployId" element={<UpdateEmployee allCountry={allCountry}/>}/>
+      </Routes>
+      </Suspense>
   );
 }
 
