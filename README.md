@@ -1,7 +1,7 @@
 <h1>Documentation for start the application</h1>
 <br>
 <ul>
-<li> Click this link <a target="_blank" rel="noreferrer" href="https://github.com/azizulhakim0794/aitl.applicaton_process.application">Client side github link</a></li>
+<li> Click this link <a target="_blank" rel="noreferrer" href="https://github.com/azizulhakim0794/aitl.applicaton_process.application">Client side github code link</a></li>
 <li> Go to Code and click  the link and copy it</li>
 <li> Past it on your in your working directory with terminal or git bash</li>
 <li> Open the folder named <b> aitl.applicaton_process.application </b> with your code editor</li>
@@ -11,6 +11,6 @@
 </br>
 </br>
 <h1>Important Links</h1>
- <a target="_blank" rel="noreferrer" href="https://github.com/azizulhakim0794/aitl.applicaton_process.application">Client side live link</a>
+ <a target="_blank" rel="noreferrer" href="https://alitpractice.netlify.app/">Client side live link</a>
 </br>
- <a target="_blank" rel="noreferrer" href="https://github.com/azizulhakim0794/employee-server">Sever side github link</a>
+ <a target="_blank" rel="noreferrer" href="https://github.com/azizulhakim0794/employee-server">Sever side github code link</a>
