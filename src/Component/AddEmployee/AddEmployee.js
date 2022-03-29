@@ -130,7 +130,7 @@ const AddEmployee = ({ allCountry }) => {
                 address: userInputAddress,
                 email: userInputEmail,
                 country: userInputCountry,
-                hired: userInputHired,
+                hired: userInputHired.toLowerCase(),
             })
                 .then((res) => {
                     if (res.data) {
