@@ -80,6 +80,10 @@ const AddEmployee = ({ allCountry }) => {
             setModalErr('Hired is must True.')
             setModalOpen(true)
         }
+        if (userInputHired !== "true") {
+            setModalErr('Hired is must True.')
+            setModalOpen(true)
+        }
         if (userInputCountry.length) {
             axios.get(`https://restcountries.com/v2/name/${userInputCountry}`)
                 .then(res => {
@@ -130,7 +134,7 @@ const AddEmployee = ({ allCountry }) => {
                 address: userInputAddress,
                 email: userInputEmail,
                 country: userInputCountry,
-                hired: userInputHired.toLowerCase(),
+                hired: userInputHired,
             })
                 .then((res) => {
                     if (res.data) {
@@ -169,7 +173,7 @@ const AddEmployee = ({ allCountry }) => {
                     </div>
                     <div className="col-md-4 col-6">
                         <label className="form-label h5">Hired</label>
-                        <input type="text" value={userInputHired} onChange={(e) => setUserInputHired(e.target.value)} placeholder="True" list="hired" className="form-control" required />
+                        <input type="text" value={userInputHired} onChange={(e) => setUserInputHired(e.target.value.toLowerCase())} placeholder="True" list="hired" className="form-control" required />
                         <datalist id="hired">
                             <option value={true} />
                             <option value={false} />
