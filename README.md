@@ -11,6 +11,6 @@
 </br>
 </br>
 <h1>Important Links</h1>
- <a target="_blank" rel="noreferrer" href="https://alitpractice.netlify.app/">Client side live link</a>
+ <a target="_blank" rel="noreferrer" href="https://alitpractice02.web.app">Client side live link</a>
 </br>
  <a target="_blank" rel="noreferrer" href="https://github.com/azizulhakim0794/employee-server">Sever side github code link</a>
