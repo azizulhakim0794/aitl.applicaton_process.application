@@ -80,8 +80,8 @@ const AddEmployee = ({ allCountry }) => {
             setModalErr('Hired is must True.')
             setModalOpen(true)
         }
-        if (userInputHired !== "true") {
-            setModalErr('Hired is must True.')
+        if (userInputHired.toLowerCase() !== "true") {
+            setModalErr('Hired is must true.')
             setModalOpen(true)
         }
         if (userInputCountry.length) {

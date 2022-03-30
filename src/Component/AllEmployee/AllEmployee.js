@@ -3,17 +3,25 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../CommonComponent/NavBar/NavBar'
 import { useNavigate } from 'react-router-dom'
 import Fade from 'react-reveal/Fade';
+import DataLoading from '../CommonComponent/DataLoading/DataLoading';
 const AllEmployee = () => {
 
   const [allEmployees, setAllEmployees] = useState([])
   const [deleteEmployeeId, setDeleteEmployeeId] = useState('')
   const [employees, seEmployees] = useState({})
   const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [loading,setLoading] = useState(false)
   const navigate = useNavigate()
   // Load all Employee
   useEffect(() => {
+    setLoading(true)
     axios.get('/employee')
-      .then(res => setAllEmployees(res.data))
+      .then(res => {
+        if(res.data){
+          setAllEmployees(res.data)
+          setLoading(false)
+        }
+      })
   }, [deleteSuccess])
   // Open Modal function
   const handleDeleteModal = (id) => {
@@ -24,7 +32,7 @@ const AllEmployee = () => {
       .then(res => {
         if (res.status === 200) {
           setDeleteSuccess(true)
-          document.getElementById(`employee${deleteId}`).style.display = 'none';
+          // document.getElementById(`employee${deleteId}`).style.display = 'none';
         }
       })
     setDeleteSuccess(false)
@@ -47,7 +55,7 @@ const AllEmployee = () => {
         <div className="header mt-4">
           <h3 className="text-center">All Employee</h3>
         </div>
-        <main>
+        {!loading ?<main>
           {allEmployees.length ? <table className="table table-hover">
             <thead>
               <tr>
@@ -62,8 +70,9 @@ const AllEmployee = () => {
                 allEmployees.map((data, index) => {
                   const { name, address, _id } = data;
                   return (
-                    <Fade id={`employee${_id}`} key={_id} bottom>
+                    <Fade  key={_id} bottom>
                       <tr >
+                      {/* id={`employee${_id}`} */}
                         <th scope="row" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{index + 1}</th>
                         <td>{name}</td>
                         <td>{address}</td>
@@ -82,7 +91,7 @@ const AllEmployee = () => {
               <br />
               <h3>NO EMPLOYEE FOUND !!!</h3>
             </div>}
-        </main>
+        </main> : <DataLoading/>}
         {/*Update Modal Start */}
         <div className="modal fade" id="updateModal" tabIndex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
